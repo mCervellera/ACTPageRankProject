@@ -1,0 +1,28 @@
+function y = edgeToCentralize( x )
+
+n = max(max(x))
+
+A = zeros(n);
+
+%scorre l'array
+
+for i = 1:n
+    numberOfOutlinks = size(find(x(:,1) == i), 1);
+    outlinksIndexes = find(x(:,1) == i);
+    for j = 0:numberOfOutlinks
+        A(i, x(outlinksIndexes(j+1),j+1)
+    end
+end
+
+%%
+for i = 1:size(x,1)
+    numberOfOutlinks = size(find(x(:,1) == i), 1);
+    for j = 0:numberOfOutlinks
+         A(indexOutlinks(j + 1),i) = 1/numberOfOutlinks;
+    end
+end
+y = A;
+
+
+end
+
