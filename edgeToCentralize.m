@@ -1,6 +1,6 @@
 function y = edgeToCentralize( x )
 
-n = max(max(x))
+n = max(max(x));
 
 A = zeros(n);
 
@@ -13,7 +13,14 @@ for i = 1:n
         A(x(outlinksIndexes(j),2), i) = 1 / numberOfOutlinks;
     end
 end
-y = A;
+
+%implementazione di M
+m = 0.15;
+S = ones(n);
+M = (1 - m)*A + m/n*S;
+
+%output
+y = M;
 
 
 end
