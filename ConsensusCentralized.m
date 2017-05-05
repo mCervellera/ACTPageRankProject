@@ -9,7 +9,7 @@ y=zeros(1000,c);
 for k=1:1:100
     z = x;
     x = M*z;
-    disp(x)
+    %disp(x)
 end
 
 % for h=1:1:c

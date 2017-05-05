@@ -20,7 +20,7 @@ S = ones(n);
 M = (1 - m)*A + m/n*S;
 
 %output
-y = M;
+y = A;
 
 
 end

@@ -1,6 +1,18 @@
-%caso centralizzato
-M=edgeToCentralize([1,2;2,3;3,2;3,4;4,3;2,4;4,2;4,1]);
+%% Setup
+
+%Caricamento set di edge
+load edges.mat;
+
+
+
+%% Caso Centralizzato
+A=edgeToCentralize(E);
+M = computeM(A);
 ConsensusCentralized(M)
 
-%caso distribuito
-%da fare....
+%% Caso distribuito
+
+% Calcolo della matrice distribuita
+% Ad = computeDistributedMatrix(A);
+% Md = computeM(Ad);
+% ConsensusDistributed(Md);
