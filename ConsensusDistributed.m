@@ -22,5 +22,3 @@ x1 = (1-m)* M(i)*z + (m/r)*ones(r);
 disp(x1) %mostriamo l'evoluzione del vettore fino al raggiungimento del consensus
 end
 end
-
->>>>>>> origin/master
