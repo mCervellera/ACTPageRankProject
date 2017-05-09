@@ -1,6 +1,6 @@
 function y = computeM( x )
 
-n = size(x,1) %restituisce 1° dimensione di A => righe
+n = size(x,1); %restituisce 1° dimensione di A => righe
 m = 0.15;
 if size(size(x), 2) == 2 %restituisce 2° dim di A => colonne
 %implementazione di M
