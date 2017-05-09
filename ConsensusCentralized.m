@@ -1,16 +1,16 @@
 function [ x ] = ConsensusCentralized(M)
 [r,c] = size(M);
 x = zeros(c,1);
-z = zeros(c,1);
+%z = zeros(c,1);
 for k=1:1:c
 x(k) = 1/c;
 end
-y=zeros(1000,c);
-for k=1:1:100
-    z = x;
-    x = M*z;
-    %disp(x)
+%y=zeros(1000,c);
+for k=1:1:1000
+    %z = x;
+    x = M*x;
 end
+disp(x')
 
 % for h=1:1:c
 %    y(1,h) = x(h); 
