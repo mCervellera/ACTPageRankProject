@@ -15,9 +15,9 @@ for i = 1:n
 end
 
 %implementazione di M
-% m = 0.15;
-% S = ones(n);
-% M = (1 - m)*A + m/n*S;
+m = 0.15;
+S = ones(n);
+M = (1 - m)*A + m/n*S;
 
 %output
 y = A;
