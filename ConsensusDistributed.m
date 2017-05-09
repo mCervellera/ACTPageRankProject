@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 function [ x,x1 ] = ConsensusDistributed(M)
     %La funzione ConsensusDistributed prende in input l'array di matrici.
     m=0.15;
@@ -47,5 +46,4 @@ disp(y');
 %disp(e);
 err=sprintf('error %.8f', e);
 disp(err);
->>>>>>> origin/master
 end
