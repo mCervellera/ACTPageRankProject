@@ -3,11 +3,14 @@ function [x,e] = ConsensusDistributed(M,x_star)
 [r,c] = size(M(:,:,1)); %serve a conoscere la dimensione della network
 %nel ciclo for, ad ogni istante k, devo richiamare la funzione che genera
 %la matrice distribuita ed usarla nel mio schema di update. 
+
+MAXITERATIONS = 1000;
+
 for k=1:1:c
 x(k) = 1/c;
 end
 y = zeros(c,1);
-for k=1:1:1000 %calcolo update come def in paragrafo 3.2
+for k=1:1:MAXITERATIONS %calcolo update come def in paragrafo 3.2
 z=x';
 %generazione indice random per la scelta di A_i o M_i
 i = randi([1 r],1,1);

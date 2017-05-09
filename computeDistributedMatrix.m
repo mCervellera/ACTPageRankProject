@@ -1,6 +1,6 @@
 function y = computeDistributedMatrix( x )
 
-n = size(x,1)
+n = size(x,1);
 
 for i = 1:n
     %inizializzazione di A
