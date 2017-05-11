@@ -1,4 +1,4 @@
-function [x,e] = ConsensusDistributed(M,x_star)
+function [x,e] = PageRankDistributed(M,x_star)
 %La funzione ConsensusDistributed prende in input l'array di matrici.
 [r,c] = size(M(:,:,1)); %serve a conoscere la dimensione della network
 %nel ciclo for, ad ogni istante k, devo richiamare la funzione che genera
