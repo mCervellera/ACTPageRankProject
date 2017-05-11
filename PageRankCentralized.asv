@@ -10,24 +10,22 @@ for k=1:1:c
 x(k) = 1/c;
 end
 
-h1=figure('Name','Centralized: Estimation Error')
-h2=figure('Name','Centralized: Convergence to Consensus of the first 4 elements')
+figure('Name','Estimation Error')
+%figure2('Name','Convergence to Consensus')
 for k=1:1:MAXITERATIONS
     
     z = x;
     x = M*z;
     diff=norm(x-z);  
 
-    figure(h2)
-    scatter(k,x(1),'b'); hold on   % rappresentazione i primi 4 valori del PageRank
+%     subplot(2,2,1)
+ %   scatter(k,diff,'filled'); hold on % errore che tende a zero 
+%     subplot(2,2,2)  
+    scatter(k,x(1),'r'); hold on
     scatter(k,x(2),'g');
-    scatter(k,x(3),'r');
+    scatter(k,x(3),'b');
     scatter(k,x(4),'k');    
-    legend('node1','node2','node3','node4')
-   
-    figure(h1)    
-    scatter(k,diff,'filled'); hold on % errore che tende a zero
-    
+    legend('nodo1'
 
     if(diff<=threshold)
         break;
