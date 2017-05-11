@@ -2,7 +2,7 @@
 
 %Caricamento set di edge
 load edges.mat;
-
+%E = randomEdgesGenerator(100, 123548);
 
 
 %% Caso Centralizzato

@@ -33,7 +33,7 @@ rng(seed);           % random seed
           edgesProgress = [edgesProgress ; [i , j] ; [ j , i ]];
       end
       progress = ((i )/ (NN)) * 100;
-          disp(progress);
+          %disp(progress);
   end
   
   
