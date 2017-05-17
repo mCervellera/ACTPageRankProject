@@ -38,18 +38,22 @@ for k=1:1:MAXITERATIONS %calcolo update come def in paragrafo 3.2
 end
 w= 1:1:elem;
 %mostriamo l'evoluzione del vettore fino al raggiungimento del consensus
-figure('Name','Distributed: Convergence to Consensus of the first 4 elements')
+figure('Name','Distributed')
+subplot(2,1,1)
 scatter(w,data(1,w),'b'),hold on; %calcola la media parziale di y(k)
 scatter(w,data(2,w),'g');
 scatter(w,data(3,w),'r');
-scatter(w,data(4,w),'k');    
+scatter(w,data(4,w),'y');    
 legend('node1','node2','node3','node4')
+title('Convergence to Consensus of the first 4 elements')
 
-figure('Name','Distributed: Estimation Error')
+
+subplot(2,1,2)
 scatter(w,error,'b'); hold on 
 scatter(w,vect_norm1,'g'); 
 scatter(w,vect_norm_inf,'r');
 legend('mean square error','norm1','norm inf')
+title('Estimation Error')
 % 
 % disp(e)
 

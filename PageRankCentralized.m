@@ -32,15 +32,19 @@ end
 
 w= 1:1:elem;
 
-figure('Name','Centralized: Convergence to Consensus of the first 4 elements')
+figure('Name','Centralized')  
+subplot(2,1,1)
 scatter(w,data(1,w),'b'); hold on   % rappresentazione i primi 4 valori del PageRank
 scatter(w,data(2,w),'g');
 scatter(w,data(3,w),'r');
 scatter(w,data(4,w),'k');    
 legend('node1','node2','node3','node4')
+title('Convergence to Consensus of the first 4 elements')
 
-figure('Name','Centralized: Estimation Error') 
+
+subplot(2,1,2)
 scatter(w,vet,'filled'); hold on % errore che tende a zero
+title('Estimation Error')
 
 
 disp(k)
