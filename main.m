@@ -15,7 +15,6 @@ x_star=PageRankCentralized(M);
 for i = 1:max(E)
     %I compute the outlinks of node i
     outLink = E(find(E(:,1) == i),2);
-    disp(outLink);
     %inlinks for i
     inLink = E(find(E(:,2) == i),1);
     for j = 1:size(inLink,1)

@@ -9,12 +9,15 @@ end
 %compute rows
 for i = 1:size(inLink)
     Ad(agentIndex, inLink(i,1)) = 1 / inLink(i,2);
-    if i ~= agentIndex
-        Ad(inLink(i,1), inLink(i,1)) = 1 - 1 / inLink(i,2);
-    end
-    Ad(agentIndex, agentIndex) = 0;
 end
 
+for i = 1:n
+    if i ~= agentIndex
+        Ad(i, i) = 1 - Ad(agentIndex,i);
+    end
+end
+
+Ad(agentIndex, agentIndex) = 0;
 
 
 y = computeM(Ad);
