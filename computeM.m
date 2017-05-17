@@ -1,5 +1,5 @@
 function y = computeM( x )
-
+%e coccia dico io
 n = size(x,1); %restituisce 1° dimensione di A => righe
 m = 0.15;
 if size(size(x), 2) == 2 %restituisce 2° dim di A => colonne
