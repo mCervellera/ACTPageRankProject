@@ -7,7 +7,7 @@ load edges.mat;
 %% Caso Centralizzato
 A=edgeToCentralize(E);
 M = computeM(A);
-x_star=PageRankCentralized(M);
+x_star=PageRankCentralized(M,E);
 
 %% Caso distribuito
 

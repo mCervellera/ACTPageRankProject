@@ -1,4 +1,4 @@
-function [ x ] = PageRankCentralized(M)
+function [ x ] = PageRankCentralized(M,E)
 
 MAXITERATIONS= intmax('int64')-2; % il piu grande numero rappresentabile in Matlab
 [r,c] = size(M);
@@ -11,6 +11,10 @@ for k=1:1:c
 x(k) = 1/c;
 end
 
+%rappresentazione degli edge 
+figure('Name','DIGRAPH of the Network')
+G = digraph([E(:,1)'], [E(:,2)']);
+plot(G);
 for k=1:1:MAXITERATIONS
     elem= elem+1;
     z = x;
