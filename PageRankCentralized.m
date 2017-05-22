@@ -34,12 +34,14 @@ w= 1:1:elem;
 
 figure('Name','Centralized')  
 subplot(2,1,1)
-scatter(w,data(1,w),'b'); hold on   % rappresentazione i primi 4 valori del PageRank
-scatter(w,data(2,w),'g');
-scatter(w,data(3,w),'r');
-scatter(w,data(4,w),'k');    
-legend('node1','node2','node3','node4')
-title('Convergence to Consensus of the first 4 elements')
+for r=1:1:c
+    scatter(w,data(r,w)); hold on   % rappresentazione i primi 4 valori del PageRank
+% scatter(w,data(2,w),'g');
+% scatter(w,data(3,w),'r');
+% scatter(w,data(4,w),'k');    
+% legend('node1','node2','node3','node4')
+end
+title('Convergence to Consensus')% of the first 4 elements')
 
 
 subplot(2,1,2)

@@ -52,17 +52,19 @@ w= 1:1:elem;
 %mostriamo l'evoluzione del vettore fino al raggiungimento del consensus
 figure('Name','Distributed')
 subplot(2,1,1)
-scatter(w,data(1,w),'b'),hold on; %calcola la media parziale di y(k)
-scatter(w,data(2,w),'g');
-scatter(w,data(3,w),'r');
-scatter(w,data(4,w),'y');    
-legend('node1','node2','node3','node4')
-title('Convergence to Consensus of the first 4 elements')
+for r=1:1:c
+    scatter(w,data(r,w)),hold on; %calcola la media parziale di y(k)
+% scatter(w,data(2,w),'g');
+% scatter(w,data(3,w),'r');
+% scatter(w,data(4,w),'y');    
+% legend('node1','node2','node3','node4')
+end
+title('Convergence to Consensus') %of the first 4 elements')
 % % unita=' s';
 disp(total_time);
 
-t1 = total_time/(24*60*60);
-timeString = datestr(t1, ' DDg HH:MM:SS');
+%t1 = total_time/(24*60*60);
+timeString = datestr(total_time/(24*60*60), ' DDg HH:MM:SS');
 % % if(total_time>=60)
 % %     total_time= total_time/60;
 % %     unita=' min';
