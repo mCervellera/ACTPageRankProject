@@ -5,7 +5,7 @@ function [x,e] = PageRankDistributed(M,x_star)
 %la matrice distribuita ed usarla nel mio schema di update. 
 
 MAXITERATIONS= intmax('int64')-2; % il piu grande numero rappresentabile in Matlab
-threshold=0.1/c; % usare 0.0035*N.elementi
+threshold=0.04/c; % usare 0.0035*N.elementi
 elem=0;
 total_time=0;
 
@@ -13,7 +13,7 @@ for k=1:1:c
 x(k) = 1/c;
 end
 y = zeros(c,1);
-lambda = 50;
+lambda = 800;
 %generation of times' vector
 Timer=exprnd(lambda,c,1); 
 
@@ -58,19 +58,22 @@ scatter(w,data(3,w),'r');
 scatter(w,data(4,w),'y');    
 legend('node1','node2','node3','node4')
 title('Convergence to Consensus of the first 4 elements')
-unita=' s';
+% % unita=' s';
 disp(total_time);
-if(total_time>=60)
-    total_time= total_time/60;
-    unita=' min';
-    if(total_time>=60)
-    total_time= total_time/60;
-    unita=' h';
-    end
-end
-total_time= uint64(total_time); 
-str = strcat('Elapsed time: ',num2str(total_time),unita);
-dim = [.1 .22 .3 .3];
+
+t1 = total_time/(24*60*60);
+timeString = datestr(t1, ' DDg HH:MM:SS');
+% % if(total_time>=60)
+% %     total_time= total_time/60;
+% %     unita=' min';
+% %     if(total_time>=60)
+% %     total_time= total_time/60;
+% %     unita=' h';
+% %     end
+% % end
+% % total_time= uint64(total_time); 
+str = strcat('Elapsed time ',timeString);
+dim = [.06 .22 .3 .3];
 annotation('textbox',dim,'String',str,'FitBoxToText','on');
 
 subplot(2,1,2)
@@ -78,7 +81,7 @@ scatter(w,error,'b'); hold on
 scatter(w,vect_norm1,'g'); 
 scatter(w,vect_norm_inf,'r');
 legend('mean square error','norm1','norm inf')
-title('Estimation Error')
+title('    Estimation Error')
 % 
 % disp(e)
 err=sprintf('error %.8f', e);
