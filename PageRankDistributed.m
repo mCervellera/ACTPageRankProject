@@ -5,36 +5,25 @@ function [x,e] = PageRankDistributed(M,x_star)
 %la matrice distribuita ed usarla nel mio schema di update. 
 
 MAXITERATIONS= intmax('int64')-2; % il piu grande numero rappresentabile in Matlab
-threshold=0.1/c; % usare 0.0035*N.elementi
+threshold=0.0035; % usare 0.0035
 elem=0;
-total_time=0;
 
 for k=1:1:c
 x(k) = 1/c;
 end
 y = zeros(c,1);
-lambda = 50;
-%generation of times' vector
-Timer=exprnd(lambda,c,1); 
 
-%usiamo distribuzione exp(NN,1,T) [Nx1] N = numero agents
+
 for k=1:1:MAXITERATIONS %calcolo update come def in paragrafo 3.2
-    %qui dentro calcolo il minimo sul set generato da exp() => chi parte
-    %nell'istante
-    [time_min,i]= min(Timer); 
-    Timer= Timer-time_min;
-    Timer(i) =exprnd(lambda,1,1); 
-    total_time= total_time+time_min;
-    
     elem = elem +1;
     z=x';
     %generazione indice random per la scelta di A_i o M_i
-    %i = randi([1 r],1,1);
+    i = randi([1 r],1,1);
     x = (M(:,:,i)*x')';
     y = x' + y;
     data(:,k) =y/double(k);
     diff=norm(x'-z);
-    %%disp(diff);
+    
     y_temp = y/double(k);
     e = sum((y_temp -x_star).^2)/c;
     error(k) = e; 
@@ -48,7 +37,6 @@ for k=1:1:MAXITERATIONS %calcolo update come def in paragrafo 3.2
   end
 end
 w= 1:1:elem;
-
 %mostriamo l'evoluzione del vettore fino al raggiungimento del consensus
 figure('Name','Distributed')
 subplot(2,1,1)
@@ -58,20 +46,7 @@ scatter(w,data(3,w),'r');
 scatter(w,data(4,w),'y');    
 legend('node1','node2','node3','node4')
 title('Convergence to Consensus of the first 4 elements')
-unita=' s';
-disp(total_time);
-if(total_time>=60)
-    total_time= total_time/60;
-    unita=' min';
-    if(total_time>=60)
-    total_time= total_time/60;
-    unita=' h';
-    end
-end
-total_time= uint64(total_time); 
-str = strcat('Elapsed time: ',num2str(total_time),unita);
-dim = [.1 .22 .3 .3];
-annotation('textbox',dim,'String',str,'FitBoxToText','on');
+
 
 subplot(2,1,2)
 scatter(w,error,'b'); hold on 
@@ -81,8 +56,8 @@ legend('mean square error','norm1','norm inf')
 title('Estimation Error')
 % 
 % disp(e)
+
+
 err=sprintf('error %.8f', e);
 disp(err);
-disp(k);
-disp(data(:,elem));
 end
