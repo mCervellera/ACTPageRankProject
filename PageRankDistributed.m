@@ -8,10 +8,13 @@ MAXITERATIONS= intmax('int64')-2; % il piu grande numero rappresentabile in Matl
 threshold=0.04/c; % usare 0.0035*N.elementi
 elem=0;
 total_time=0;
+sz=5;
+sz2=10;
 
 for k=1:1:c
 x(k) = 1/c;
 end
+
 y = zeros(c,1);
 lambda = 10;
 %generation of times' vector
@@ -26,7 +29,7 @@ for k=1:1:MAXITERATIONS %calcolo update come def in paragrafo 3.2
     %nell'istante
     [time_min,i]= min(Timer); 
     Timer= Timer-time_min;
-    rng('shuffle')
+    %rng('shuffle')
     Timer(i) = exprnd(lambda,1,1); %random('Exponential',lambda,1,1);  
     total_time= total_time+time_min;
     %disp(total_time)
@@ -58,7 +61,7 @@ w= 1:1:elem;
 figure('Name','Distributed')
 subplot(2,1,1)
 for r=1:1:c
-    scatter(w,data(r,w)),hold on; %calcola la media parziale di y(k)
+    scatter(w,data(r,w),sz),hold on; %calcola la media parziale di y(k)
 % scatter(w,data(2,w),'g');
 % scatter(w,data(3,w),'r');
 % scatter(w,data(4,w),'y');    
@@ -84,9 +87,10 @@ dim = [.06 .22 .3 .3];
 annotation('textbox',dim,'String',str,'FitBoxToText','on');
 
 subplot(2,1,2)
-scatter(w,error,'b'); hold on 
-scatter(w,vect_norm1,'g'); 
-scatter(w,vect_norm_inf,'r');
+scatter(w,error,sz2,'b'); hold on 
+scatter(w,vect_norm1,sz2,'g'); 
+scatter(w,vect_norm_inf,sz2,'r');
+set(gca,'yscale','log')
 legend('mean square error','norm1','norm inf')
 title('    Estimation Error')
 % 
