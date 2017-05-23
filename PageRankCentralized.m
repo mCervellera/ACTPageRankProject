@@ -41,7 +41,7 @@ for r=1:1:c
 % scatter(w,data(4,w),'k');    
 % legend('node1','node2','node3','node4')
 end
-title('Convergence to Consensus')% of the first 4 elements')
+title('Convergence to PageRank')% of the first 4 elements')
 
 
 subplot(2,1,2)

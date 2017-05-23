@@ -59,7 +59,7 @@ for r=1:1:c
 % scatter(w,data(4,w),'y');    
 % legend('node1','node2','node3','node4')
 end
-title('Convergence to Consensus') %of the first 4 elements')
+title('Convergence to PageRank') %of the first 4 elements')
 % % unita=' s';
 disp(total_time);
 
