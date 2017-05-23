@@ -13,9 +13,12 @@ for k=1:1:c
 x(k) = 1/c;
 end
 y = zeros(c,1);
-lambda = 800;
+lambda = 10;
 %generation of times' vector
-Timer=exprnd(lambda,c,1); 
+rng('shuffle') %serve per far generare nuemri casuali ogni volta che riavviamo il programma altrimenti genera semrpe gli stessi
+Timer=exprnd(lambda,c,1);
+%Timer=random('Exponential',lambda,c,1);
+%disp(Timer)
 
 %usiamo distribuzione exp(NN,1,T) [Nx1] N = numero agents
 for k=1:1:MAXITERATIONS %calcolo update come def in paragrafo 3.2
@@ -23,8 +26,10 @@ for k=1:1:MAXITERATIONS %calcolo update come def in paragrafo 3.2
     %nell'istante
     [time_min,i]= min(Timer); 
     Timer= Timer-time_min;
-    Timer(i) =exprnd(lambda,1,1); 
+    rng('shuffle')
+    Timer(i) = exprnd(lambda,1,1); %random('Exponential',lambda,1,1);  
     total_time= total_time+time_min;
+    %disp(total_time)
     
     elem = elem +1;
     z=x';
