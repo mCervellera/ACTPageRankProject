@@ -1,5 +1,5 @@
 %% Setup
-
+close all;
 %Caricamento set di edge
 %load edges.mat;
 E = randomEdgesGenerator(10, 123548);
