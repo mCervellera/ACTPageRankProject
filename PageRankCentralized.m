@@ -1,29 +1,40 @@
 function [ x ] = PageRankCentralized(M,E)
 
-MAXITERATIONS= intmax('int64')-2; % il piu grande numero rappresentabile in Matlab
+%set the max number of iteration as a really big number
+MAXITERATIONS= intmax('int64')-2;
+%get the dimensions of matrix M
 [r,c] = size(M);
+%inizialize update vectors
 x = zeros(c,1);
 z = zeros(c,1);
+%inizialize the threeshold as 1/25 of the vote
 threshold=0.04/c;
 elem=0;
 
+%inizialize the update vector x
 for k=1:1:c
-x(k) = 1/c;
+    x(k) = 1/c;
 end
 
-%rappresentazione degli edge 
+%print the grapg using the edge vector
 figure('Name','DIGRAPH of the Network')
 G = digraph([E(:,1)'], [E(:,2)']);
 plot(G);
 for k=1:1:MAXITERATIONS
+    %count the iterations
     elem= elem+1;
+    %save the active vector in z
     z = x;
+    %compute next iteration
     x = M*z;
+    %compute the difference of the active state and the precedent
     dif=norm(x-z);  
+    %save the difference in order to print it later
     vet(k)=dif;
+    %update the data vector
     data(:,k) =x;
 
-
+    %if the difference is low we are done
     if(dif<=threshold)
         break;
     end 
@@ -35,20 +46,15 @@ w= 1:1:elem;
 figure('Name','Centralized')  
 subplot(2,1,1)
 for r=1:1:c
-    p=plot(w,data(r,w),'-o'); hold on   % rappresentazione i primi 4 valori del PageRank
+    p=plot(w,data(r,w),'-o'); hold on % print the evoltion of the system
     p.LineWidth = 2;
-% scatter(w,data(2,w),'g');
-% scatter(w,data(3,w),'r');
-% scatter(w,data(4,w),'k');    
-% legend('node1','node2','node3','node4')
 end
 
-title('Convergence to PageRank')% of the first 4 elements')
+title('Convergence to PageRank')
 
 
 subplot(2,1,2)
-p2=plot(w,vet,'-o'); hold on % errore che tende a zero
-%set(gca,'yscale','log')
+p2=plot(w,vet,'-o'); hold on % print the estimated error
 p2.LineWidth = 2;
 title('Estimation Error')
 
