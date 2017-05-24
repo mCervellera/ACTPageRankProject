@@ -27,13 +27,12 @@ for i = 1:n
         inLink(j,2) = size(find(E(:,1) == inLink(j,1)),1);
     end
     disp(edgeToDistributed(outLink, inLink, i, n));
-    %compute each link distributed matrix
     Ad(:,:,i) = edgeToDistributed(outLink, inLink, i, n);
    
 end
 
 disp(Ad);
-%compute the pagenrank in the distributed case
+
 PageRankDistributed(Ad,x_star);
 
 

@@ -1,11 +1,12 @@
 function y = edgeToCentralize( x )
 
-n = max(max(x)); %per sapere quanti nodi ho
+% get the dimension of the edge vector in order to know dimension of
+% the link matrix and inizialize it
+n = max(max(x));
 
 A = zeros(n);
 
-%scorre l'array
-
+%build the matrix using the edge vector
 for i = 1:n
     numberOfOutlinks = size(find(x(:,1) == i), 1);
     outlinksIndexes = find(x(:,1) == i);
@@ -13,11 +14,6 @@ for i = 1:n
         A(x(outlinksIndexes(j),2), i) = 1 / numberOfOutlinks;
     end
 end
-
-%implementazione di M
-% m = 0.15;
-% S = ones(n);
-% M = (1 - m)*A + m/n*S;
 
 %output
 y = A;
