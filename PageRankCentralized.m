@@ -51,8 +51,8 @@ w= 1:1:elem;
 figure('Name','Centralized')  
 subplot(2,1,1)
 for r=1:1:c
-    p=plot(w,data(r,w),'-o'); hold on % print the evoltion of the system
-    p.LineWidth = 2;
+    p1=plot(w,data(r,w),'-o'); hold on % print the evoltion of the system
+    p1.LineWidth = 2;
 end
 
 title('Convergence to PageRank')
@@ -60,6 +60,10 @@ title('Convergence to PageRank')
 subplot(2,1,2)
 p2=plot(w,vet,'-o'); hold on % print the estimated error
 p2.LineWidth = 2;
+p3=plot(w(elem),vet(elem),'r');
+p3.LineWidth = 2;
+p3.Marker = '*';
+xlabel(['\bullet The last value of error is: ' num2str(vet(elem),'%.9f')],'FontSize',12,'FontWeight','bold','Color','r')
 title('Estimation Error')
 
 
