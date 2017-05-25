@@ -77,8 +77,9 @@ scatter(w,error,sz2,'b'); hold on
 %scatter(w,vect_norm1,sz2,'g'); 
 %scatter(w,vect_norm_inf,sz2,'r');
 set(gca,'yscale','log')
+legend('mean square error')
 %legend('mean square error','norm1','norm inf')
-title('    Estimation Error')
+title('Estimation Error')
 
 err=sprintf('error %.8f', e);
 disp(err);
