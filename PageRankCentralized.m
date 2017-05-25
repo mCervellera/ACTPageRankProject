@@ -8,13 +8,18 @@ MAXITERATIONS= intmax('int64')-2;
 x = zeros(c,1);
 z = zeros(c,1);
 %inizialize the threeshold as 1/25 of the vote
-threshold=0.04/c;
+threshold=0.004/c;
 elem=0;
 
+%generale random numbers each time we run the program
+rng('shuffle');
 %inizialize the update vector x
-for k=1:1:c
-    x(k) = 1/c;
-end
+% for k=1:1:c
+%     x(k) = 1/c;
+% end
+x = rand(1,c); 
+S = sum(x); 
+x = (x/S)'; % renormalisation
 
 %print the grapg using the edge vector
 figure('Name','DIGRAPH of the Network')

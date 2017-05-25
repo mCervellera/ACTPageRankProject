@@ -11,14 +11,19 @@ total_time=0;
 sz=5;
 sz2=10;
 
-for k=1:1:c
-    x(k) = 1/c;
-end
+%generale random numbers each time we run the program
+rng('shuffle');
+%inizialize the update vector x 
+% for k=1:1:c
+%     x(k) = 1/c;
+% end
+x = rand(1,c); 
+S = sum(x); 
+x = x/S; % renormalisation
 
 y = zeros(c,1);
 lambda = 10;
-%generale random numbers each time we run the program
-rng('shuffle');
+
 %generation of times' vector using an exponential distribution
 Timer=exprnd(lambda,c,1);
 
@@ -69,11 +74,12 @@ annotation('textbox',dim,'String',str,'FitBoxToText','on');
 
 subplot(2,1,2)
 scatter(w,error,sz2,'b'); hold on 
-scatter(w,vect_norm1,sz2,'g'); 
-scatter(w,vect_norm_inf,sz2,'r');
+%scatter(w,vect_norm1,sz2,'g'); 
+%scatter(w,vect_norm_inf,sz2,'r');
 set(gca,'yscale','log')
-legend('mean square error','norm1','norm inf')
+%legend('mean square error','norm1','norm inf')
 title('    Estimation Error')
+
 err=sprintf('error %.8f', e);
 disp(err);
 disp(k);

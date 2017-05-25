@@ -11,14 +11,19 @@ total_time=0;
 sz=5;
 sz2=10;
 
-for k=1:1:c
-    x(k) = 1/c;
-end
+%generale random numbers each time we run the program
+rng('shuffle');
+%inizialize the update vector x 
+% for k=1:1:c
+%     x(k) = 1/c;
+% end
+x = rand(1,c); 
+S = sum(x); 
+x = x/S; % renormalisation
 
 y = zeros(c,1);
 lambda = 10;
-%generale random numbers each time we run the program
-rng('shuffle');
+
 %generation of times' vector using an exponential distribution
 Timer=exprnd(lambda,c,1);
 
@@ -26,13 +31,12 @@ for k=1:1:MAXITERATIONS
     %decide who start the update and reassign it's timer
     [time_min,i]= min(Timer); 
     Timer= Timer-time_min;
-    Timer(i) = exprnd(lambda,1,1); %random('Exponential',lambda,1,1);  
+    Timer(i) = exprnd(lambda,1,1);
     total_time= total_time+time_min;
-    %disp(total_time)
     
     elem = elem +1;
     z=x';
-    %generazione indice random per la scelta di A_i o M_i
+    %generation of random indexes to decide who update, no longer used
     %i = randi([1 r],1,1);
     x = (M(:,:,i)*x')';
     y = x' + y;
@@ -40,6 +44,7 @@ for k=1:1:MAXITERATIONS
     diff=norm(x'-z);
     %%disp(diff);
     y_temp = y/double(k);
+    %compute the error with the centrilized x_star
     e = sum((y_temp -x_star).^2)/c;
     error(k) = e; 
     norm1=norm(y_temp -x_star,1);
@@ -53,31 +58,16 @@ for k=1:1:MAXITERATIONS
 end
 w= 1:1:elem;
 
-%mostriamo l'evoluzione del vettore fino al raggiungimento del consensus
+%show the evolution of the vector until cycle breaks
 figure('Name','Distributed')
 subplot(2,1,1)
 for r=1:1:c
-    scatter(w,data(r,w),sz),hold on; %calcola la media parziale di y(k)
-% scatter(w,data(2,w),'g');
-% scatter(w,data(3,w),'r');
-% scatter(w,data(4,w),'y');    
-% legend('node1','node2','node3','node4')
+    scatter(w,data(r,w),sz),hold on;
 end
-title('Convergence to PageRank') %of the first 4 elements')
-% % unita=' s';
+title('Convergence to PageRank')
 disp(total_time);
 
-%t1 = total_time/(24*60*60);
 timeString = datestr(total_time/(24*60*60), ' DDg HH:MM:SS');
-% % if(total_time>=60)
-% %     total_time= total_time/60;
-% %     unita=' min';
-% %     if(total_time>=60)
-% %     total_time= total_time/60;
-% %     unita=' h';
-% %     end
-% % end
-% % total_time= uint64(total_time); 
 str = strcat('Elapsed time ',timeString);
 dim = [.06 .22 .3 .3];
 annotation('textbox',dim,'String',str,'FitBoxToText','on');
@@ -87,10 +77,9 @@ scatter(w,error,sz2,'b'); hold on
 scatter(w,vect_norm1,sz2,'g'); 
 scatter(w,vect_norm_inf,sz2,'r');
 set(gca,'yscale','log')
+%set(gca,'xscale','log')
 legend('mean square error','norm1','norm inf')
 title('    Estimation Error')
-% 
-% disp(e)
 err=sprintf('error %.8f', e);
 disp(err);
 disp(k);
