@@ -73,13 +73,28 @@ dim = [.06 .22 .3 .3];
 annotation('textbox',dim,'String',str,'FitBoxToText','on');
 
 subplot(2,1,2)
-scatter(w,error,sz2,'b'); hold on 
+p3=plot(w,error,'-o'); hold on % print the estimated error
+p3.LineWidth = 1.5;
+%scatter(w,error,sz2,'b'); hold on 
 %scatter(w,vect_norm1,sz2,'g'); 
 %scatter(w,vect_norm_inf,sz2,'r');
-set(gca,'yscale','log')
+set(gca,'xscale','log')
 legend('mean square error')
 %legend('mean square error','norm1','norm inf')
 title('Estimation Error')
+
+%print the norm 1 and norm inf
+figure('Name','Distributed - Norm 1 and Norm inf')  
+subplot(2,1,1)
+p4=plot(w,vect_norm1,'-o g'); hold on % print the estimated error
+p4.LineWidth = 1.5;
+set(gca,'xscale','log')
+legend('norm 1') 
+subplot(2,1,2)
+p5=plot(w,vect_norm_inf,'-o r'); hold on % print the estimated error
+p5.LineWidth = 1.5;
+set(gca,'xscale','log')
+legend('norm inf')
 
 err=sprintf('error %.8f', e);
 disp(err);

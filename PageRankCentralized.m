@@ -8,7 +8,7 @@ MAXITERATIONS= intmax('int64')-2;
 x = zeros(c,1);
 z = zeros(c,1);
 %inizialize the threeshold as 1/25 of the vote
-threshold=0.004/c;
+threshold=0.0004/c;
 elem=0;
 
 %generale random numbers each time we run the program
@@ -56,7 +56,6 @@ for r=1:1:c
 end
 
 title('Convergence to PageRank')
-
 
 subplot(2,1,2)
 p2=plot(w,vet,'-o'); hold on % print the estimated error
