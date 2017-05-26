@@ -66,8 +66,9 @@ p3.Marker = '*';
 xlabel(['\bullet The last value of error is: ' num2str(vet(elem),'%.9f')],'FontSize',12,'FontWeight','bold','Color','r')
 title('Estimation Error')
 
-
+%show the number of iterations
 disp(k)
+%%show the last Pagerank vector
 disp(x')
 
 
