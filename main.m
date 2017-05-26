@@ -2,7 +2,7 @@
 close all;
 %Load the edges set
 %load edges.mat;
-E = randomEdgesGenerator(30, 123548);
+E = randomEdgesGenerator(10, 123548);
 
 %% Centralized case
 %Compute the centralized link matrix
@@ -26,13 +26,13 @@ for i = 1:n
         %associate each inlink to it's outdegree
         inLink(j,2) = size(find(E(:,1) == inLink(j,1)),1);
     end
-   % disp(edgeToDistributed(outLink, inLink, i, n));
+    disp(edgeToDistributed(outLink, inLink, i, n));
     %compute each link distributed matrix
     Ad(:,:,i) = edgeToDistributed(outLink, inLink, i, n);
    
 end
 
-%disp(Ad);
+disp(Ad);
 %compute the pagenrank in the distributed case
 PageRankDistributed(Ad,x_star);
 
