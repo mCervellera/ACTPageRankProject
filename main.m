@@ -2,7 +2,7 @@
 close all;
 %Load the edges set
 %load edges.mat;
-E = randomEdgesGenerator(30, 123548);
+E = randomEdgesGenerator(2, 123548);
 
 %% Centralized case
 %Compute the centralized link matrix

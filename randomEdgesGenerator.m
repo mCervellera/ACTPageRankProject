@@ -41,7 +41,7 @@ rng(seed);           % random seed
     edgesProgress = [edgesProgress ; [ randomReturn , i ]];
   end
   
-E = unique(edgesProgress, 'rows')
+E = unique(edgesProgress, 'rows');
 
 end
 
