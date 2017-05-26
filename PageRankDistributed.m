@@ -5,7 +5,14 @@ function [x,e] = PageRankDistributed(M,x_star)
 %set the max number of iteration as a really big number
 MAXITERATIONS= intmax('int64')-2;
 %inizialize the threeshold as 1/25 of the vote
-threshold=0.04/c;
+if(c<= 50)
+    threshold=0.04/(c);
+elseif (c>50 || c<100)
+    threshold=0.026/(c);   
+else
+    threshold=0.012/(c);
+end
+
 elem=0;
 total_time=0;
 sz=5;
@@ -54,7 +61,7 @@ for k=1:1:MAXITERATIONS
    
     if(diff<=threshold)
         break;
-  end
+    end
 end
 w= 1:1:elem;
 
@@ -62,7 +69,9 @@ w= 1:1:elem;
 figure('Name','Distributed')
 subplot(2,1,1)
 for r=1:1:c
-    scatter(w,data(r,w),sz),hold on;
+    p0=plot(w,data(r,w),'-o','MarkerSize',3); hold on % print the evoltion of the system
+    p0.LineWidth = 1.5;
+    %scatter(w,data(r,w),sz),hold on;
 end
 title('Convergence to PageRank')
 disp(total_time);
@@ -108,8 +117,8 @@ p9.Marker = '*';
 xlabel(['\bullet The last value of norm \infty is: ' num2str(vect_norm_inf(elem),'%.9f')],'FontSize',12,'FontWeight','bold','Color','r')
 legend('norm \infty')
 
-err=sprintf('error %.8f', e);
-disp(err);
-disp(k);
+%show the number of iterations
+%disp(k); 
+%%show the last Pagerank vector
 disp(data(:,elem));
 end
