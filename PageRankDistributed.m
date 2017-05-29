@@ -3,14 +3,14 @@ function [x,e] = PageRankDistributed(M,x_star)
 [r,c] = size(M(:,:,1));
 
 %set the max number of iteration as a really big number
-MAXITERATIONS= intmax('int64')-2;
+MAXITERATIONS=5000; %intmax('int64')-2;
 %inizialize the threeshold as 1/25 of the vote
-if(c<= 50)
-    threshold=0.4/(c);
-elseif (c>50 || c<100)
-    threshold=0.26/(c);   
+if(c<= 12)
+    threshold=0.15/(c);
+elseif (c>12 || c<=100)
+    threshold=0.175/(c);   
 else
-    threshold=0.12/(c);
+    threshold=0.01/(c);
 end
 
 elem=0;
