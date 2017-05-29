@@ -1,7 +1,7 @@
 function [ x ] = PageRankCentralized(M,E)
 
 %set the max number of iteration as a really big number
-MAXITERATIONS= 5000; %intmax('int64')-2;
+MAXITERATIONS= 100000; %intmax('int64')-2;
 %get the dimensions of matrix M
 [r,c] = size(M);
 %inizialize update vectors
