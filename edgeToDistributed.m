@@ -1,4 +1,4 @@
-function y = edgeToDistributed( outLink, inLink, agentIndex , n )
+function Ad = edgeToDistributed( outLink, inLink, agentIndex , n )
 
 %inizialize the distributed link matrix
 Ad = eye(n);
@@ -23,4 +23,4 @@ end
 Ad(agentIndex, agentIndex) = 0;
 
 %output the matrix modified as M
-y = computeM(Ad);
+%y = computeM(Ad);

@@ -28,15 +28,14 @@ for i = 1:n
     end
    % disp(edgeToDistributed(outLink, inLink, i, n));
     %compute each link distributed matrix
-    Ad= edgeToDistributed(outLink, inLink, i, n);
-    %output the matrix modified as M
-    M(:,:,i)=computeM(Ad);
+    Ad(:,:,i) = edgeToDistributed(outLink, inLink, i, n);
+    M(:,:,i)=com
    
 end
 
 %disp(Ad);
 %compute the pagenrank in the distributed case
-PageRankDistributed(M,x_star);
+PageRankDistributed(Ad,x_star);
 
 
 
